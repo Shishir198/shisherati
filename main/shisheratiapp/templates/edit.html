@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+</head>
+<body>
+<!--     {{task}}-->
+
+    <form method="post" class="row">
+        {% csrf_token %}
+        <input type="text"  name="task" value="{{task.task}}">
+        <input type="Submit">
+
+    </form>
+
+</body>
+</html>

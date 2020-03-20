@@ -1,0 +1,153 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <form action="" method="post">-->
+<!--        {% csrf_token %}-->
+<!--        <input type="text" name = 'task' placeholder="enter the task">-->
+<!--        <input type="checkbox" name = 'done' >is it done-->
+<!--        <br>-->
+
+
+<!--        <input type="submit">-->
+<!--    </form>-->
+
+
+<!--    {% for t in task%}-->
+<!--        {% if t.done %}-->
+
+<!--            {{t.task}} -&#45;&#45; completed <br>-->
+<!--        {% else %}-->
+<!--            {{t.task}} -&#45;&#45; not completed <br>-->
+<!--        {% endif %}-->
+<!--    {% endfor%}-->
+<!--</body>-->
+<!--</html>-->
+{% load static %}
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <title>Table V02</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href='{% static "table/images/icons/favicon.ico" %}'/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static "table/vendor/bootstrap/css/bootstrap.min.css"%}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static "table/fonts/font-awesome-4.7.0/css/font-awesome.min.css"%}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static "table/vendor/animate/animate.css"%}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static "table/vendor/select2/select2.min.css"%}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static "table/vendor/perfect-scrollbar/perfect-scrollbar.css"%}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static "table/css/util.css"%}'>
+    <link rel="stylesheet" type="text/css" href='{% static "table/css/main.css"%}'>
+    <!--===============================================================================================-->
+
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table">
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <div class="input-group mb-8">
+                        <input type="text" class="form-control col-lg-19" name="task" placeholder="add here" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-success " type="Submit" id="button-addon2">submit </button>
+                        </div>
+                    </div>
+
+                    <br>
+
+                </form>
+                <br>
+
+                <div class="row header">
+                    <div class="cell">
+                        YOUR TASK
+                    </div>
+                    <div class="cell">
+                        CHECK
+                    </div>
+                    <div class="cell">
+                        EDIT
+                    </div>
+                    <div class="cell">
+                        DELETE
+                    </div>
+                    <div class="cell">
+                       REMIND BY
+                    </div>
+                </div>
+            {% for t in task %}
+                {% if t.done %}
+                    <div class= "row" >
+                        <div class="cell" data-title="Full Name">
+                            {{t.id}} | {{t.task}}
+                        </div>
+                        <div class="cell" data-title="Age">
+                            COMPLETED
+                        </div>
+                        <div class="cell" data-title="Job Title">
+                            <a href="{% url 'edit' t.id %}">Edit</a>
+                        </div>
+                        <div class="cell" data-title="Location">
+                            <a href="{% url 'delete' t.id %}">Delete</a>
+                        </div>
+                        <div class="cell">
+                            {{t.remind_by}}
+                        </div>
+                    </div>
+                {% else %}
+                <div class="row">
+                    <div class="cell" data-title="Full Name">
+                        {{t.id}} | {{t.task}}
+                    </div>
+                    <div class="cell" data-title="Age">
+                        NOT COMPLETED
+                    </div>
+                    <div class="cell" data-title="Job Title">
+                        <a href="{% url 'edit' t.id %}">Edit</a>
+                    </div>
+                    <div class="cell" data-title="Location">
+                        <a href="{% url 'delete' t.id %}">Delete</a>
+                    </div>
+                    <div class="cell">
+                        {{t.remind_by}}
+                    </div>
+                </div>
+                {% endif %}
+
+            {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--===============================================================================================-->
+<script src='{% static "table/vendor/jquery/jquery-3.2.1.min.js"%}'></script>
+<!--===============================================================================================-->
+<script src='{% static "table/vendor/bootstrap/js/popper.js"%}'></script>
+<script src='{% static "table/vendor/bootstrap/js/bootstrap.min.js"%}'></script>
+<!--===============================================================================================-->
+<script src='{% static "table/vendor/select2/select2.min.js"%}'></script>
+<!--===============================================================================================-->
+<script src='{% static "table/js/main.js"%}'></script>
+
+</body>
+</html>
