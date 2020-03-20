@@ -8,8 +8,8 @@ It gets you updated with your added task, by
  
 Project contains:
 
- -homepage,
- -registration page,
- -login page,
- -Sql database to manage tasks,
+ - homepage.
+ - registration page.
+ - login page.
+ - Sql database to manage tasks.
  - and to do list web app.
